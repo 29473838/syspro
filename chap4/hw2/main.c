@@ -1,22 +1,47 @@
 #include <stdio.h>
+#include <string.h>
+
+int n = 0;
+int line = 1;
+int start = 1;
+
+void cat(FILE *fp)
+{
+	int c;
+	while ((c = getc(fp)) != EOF)
+	{
+		if (n && start) {
+	 		printf("%6d\t", line++), start =0;
+		}
+		putc(c,stdout);
+		if (c == '\n') {
+			start = 1;
+		}
+	}
+}
 
 int main(int argc, char *argv[])
 {
 	FILE *fp;
-	int c;
-	
-	if (argc < 2) 
-	{
-		fp = stdin;
-	} else fp = fopen(argv[1],"r");
+	int c, i, n = 0, line = 1, start = 1;
 
-	c = getc(fp);
-	while (c != EOF)
+	for (i = 1; i < argc; i++)
+		if (strcmp(argv[i], "-n") == 0) n = 1;
+
+	for (i = 1; i < argc || i == 1; i++)
 	{
-		putc(c,stdout);
-		c = getc(fp);
+		if (argc < 2) fp = stdin;
+		else if (strcmp(argv[i], "-n") == 0) continue;
+		else if ((fp = fopen(argv[i], "r")) == NULL) continue;
+
+		while ((c = getc(fp)) != EOF)
+		{
+			if (n && start) printf("%6d\t", line++), start = 0;
+			putc(c, stdout);
+			if (c == '\n') start = 1;
+		}
+		if (fp != stdin) fclose(fp);
 	}
-	fclose(fp);
 	return 0;
 }
 

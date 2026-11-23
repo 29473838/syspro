@@ -1,0 +1,18 @@
+dcuuser@ssh-zero060315:~/syspro/chap6/hw1$ ls -sl test.txt
+0 -rw-r--r-- 1 dcuuser dcuuser 0 Nov 23 17:36 test.txt
+dcuuser@ssh-zero060315:~/syspro/chap6/hw1$ stat test.txt
+  File: test.txt
+  Size: 0               Blocks: 0          IO Block: 4096   regular empty file
+Device: 4320h/17184d    Inode: 1327        Links: 1
+Access: (0644/-rw-r--r--)  Uid: ( 1000/ dcuuser)   Gid: ( 1000/ dcuuser)
+Access: 2026-11-23 17:36:32.461489206 +0000
+Modify: 2026-11-23 17:36:32.461489206 +0000
+Change: 2026-11-23 17:36:32.461489206 +0000
+ Birth: -
+dcuuser@ssh-zero060315:~/syspro/chap6/hw1$ ls -i test.txt
+1327 test.txt
+dcuuser@ssh-zero060315:~/syspro/chap6/hw1$ touch test.txt
+dcuuser@ssh-zero060315:~/syspro/chap6/hw1$ ls -l
+total 0
+-rw-r--r-- 1 dcuuser dcuuser 0 Nov 23 17:37 test.txt
+
